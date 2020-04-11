@@ -4,8 +4,10 @@ job:
     docker:
     
       - image: circleci/node:12.16.1
+    
+    working_directory: ~/SCEMarketProj
       
-    stups:
+    steps:
       - checkout
       - run: npm install
       - run: npm test
