@@ -2,7 +2,10 @@ version: 2.1
 job:
   build:
     docker:
+    
       - image: circleci/node:12.16.1
+      
     stups:
+      - checkout
       - run: npm install
       - run: npm test
