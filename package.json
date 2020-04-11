@@ -4,9 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "modulePaths": 
-  ["<rootDir>"]
-  },
+
+,
   "keywords": [],
   "author": "",
   "license": "ISC",
