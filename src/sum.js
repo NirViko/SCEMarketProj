@@ -4,4 +4,3 @@ function sum(a,b)
 }
 
 module.exports = sum
-console.log(sum(7,6))
