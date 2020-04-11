@@ -11,3 +11,4 @@ job:
       - checkout
       - run: npm install
       - run: npm test
+      
