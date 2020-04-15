@@ -1,12 +1,12 @@
 {
   "name": "etc",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "test": "mocha test/*.spec.js --color",
+    "test": "jest",
     "lint": "eslint src/*.js --color",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
