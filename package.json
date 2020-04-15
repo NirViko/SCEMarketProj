@@ -16,8 +16,11 @@
     "@typescript-eslint/parser": "^2.27.0",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
-    "jest": "^25.3.0"
+    "jest": "^25.3.0",
+    "nodemon": "^2.0.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1"
+  },
   "description": ""
 }
