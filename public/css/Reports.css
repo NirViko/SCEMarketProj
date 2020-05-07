@@ -1,0 +1,29 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  .thead-dark{
+    background-color: #252525;
+  }
+  
+  .thead-dark th{
+      color: #252525;
+  }
+  tr:nth-child(even) {
+    background-color: #aec0a8;
+  }
+  h1{
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      background-color: #967d9b;
+    }

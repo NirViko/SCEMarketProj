@@ -1,0 +1,100 @@
+<%- include('partials/header') %>
+
+
+<link  rel="stylesheet" type="text/css" href="/css/Reports.css">
+
+<div> <h1 id="h1">hello!</h1> </div>
+
+<div class="container">
+    <hr> 
+    <div class="row">
+        <div class="Reports">
+            <!-- <div class = "filters">   
+                <form id="filters" action="/Reports" method="POST">       
+
+                    <label for="cartID">Order number</label>
+                    <input type="text" id="unitID" name="unitID" onkeypress="return isNumberKey(event)" value= " ">
+
+                    <label for="Location">Location</label>
+                    <select id = "Location" name = "Location" placeholder="Choose location">  
+                        <option value=" "></option>
+                        <option value='Ashdod'>Ashdod</option>
+                        <option value='Beer Sheva'>Beer Sheva</option>
+                    </select>
+
+                    <label for="Unittype">Unit type</label>
+                    <select id = "Unittype" name = "Unittype" placeholder="Choose unit type"> 
+                        <option value=" "></option>
+                        <option value='vila'>vila</option>
+                        <option value='loft'>loft</option>
+                        <option value='apartment'>apartment</option>
+                        <option value='basement'>basement</option>
+                    </select>                        
+                 
+                    <label for="numberOfRooms">Number of rooms </label>
+                    <input type="number" id="numberOfRooms" name="numberOfRooms" min="1" max="6" step="0.5" value=1 >
+
+                    <label for="startDate" >Start date</label>
+                    <input type="date" id="startDate" name="startDate" >
+
+                    <label for="endDate">End date</label>
+                    <input type="date" id="endDate" name="endDate"  onchange="checkEndDate()">
+
+                    <label for="totalPrice">From price</label>
+                    <input type="text" id="totalPrice" name="totalPrice" onkeypress="return isNumberKey(event)" value=" ">
+                    
+                    <label for="orderNumber">Order number</label>
+                    <input type="text" id="orderNumber" name="orderNumber" onkeypress="return isNumberKey(event)" value=" ">
+
+                    <button type="submit" class="btn btn-dark" form="filtering">Search</button>
+                </form>        
+            </div> -->
+            <table class="table" id="Reports" >
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Order number</th>
+                    <th scope="col">Product ID</th>
+                    <th scope="col">Product name</th>
+                    <th scope="col">Product amount</th>
+                    <th scope="col">Total price</th> 
+                    <th scope="col">Purches date</th>
+                    <th scope="col">Costumer name</th>
+                    <th scope="col">Costumer email</th>
+
+
+                    <!-- <th class = "none" >Product ID</th>
+                    <th class = "none" >Product name</th>
+                    <th class = "none" >Product amount</th>
+                    <th class = "none" >Total price</th> -->
+
+                    <!-- <th scope="col" onclick="sortDateTable(6)"></th>
+                    <th scope="col" onclick="sortIntTable(7)">Price</th> 
+                    <th scope="col" onclick="sortStringTable(8)">Student full name</th> 
+                    <th scope="col" onclick="sortStringTable(9)">Student email address</th>  -->
+                  </tr>
+                </thead>
+               
+                <tbody>
+
+                </tr>
+                <% if(typeof rows !== 'undefined'){%>
+                    <%for (var i = 0; i < rows.length; i++) { %>
+                        <tr>
+                            <td><%= rows[i].cartID %></td>
+                            <td><%= rows[i].PID %></td>
+                            <td><%= rows[i].Pname %></td>
+                            <td><%= rows[i].Pamount %></td>
+                            <td><%= rows[i].totalPrice %></td>
+                            <td><%= rows[i].cDate.getDate() + '/' + rows[i].cDate.getMonth() + '/' + rows[i].cDate.getFullYear() %></td>
+                            <td><%= rows[i].customerName %></td>
+                            <td><%= rows[i].customerEmail %></td>
+                        
+                        </tr>
+                    <% }} %>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>  
+
+<%- include('partials/footer') %>
