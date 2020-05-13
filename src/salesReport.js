@@ -13,6 +13,5 @@ class salesReport
         this.customerEmail = customerEmail;
     }
     
-
 }
 module.exports = salesReport;

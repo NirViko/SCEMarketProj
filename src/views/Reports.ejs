@@ -74,6 +74,33 @@
                     <td colspan="5" id="totalProductsSum"> total products sold: </td>
                 </tr>
               </table>
+
+              <h2 id = "inventory">Store Inventory:</h2>
+
+                    <table class="sortable" id="Inventory" >
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Product name</th>
+                                <th scope="col">Product ID</th>
+                                <th scope="col">Product amount</th>
+                            </tr>
+                        </thead>
+
+
+                    <tbody>
+                    <tr>
+                    <% if(typeof inventoryRows !== 'undefined'){%>
+                        <%for (var j = 0; j < inventoryRows.length; j++) { %>
+                            <tr>
+                                <td><%= inventoryRows[j].PName %></td>
+                                <td><%= inventoryRows[j].PID %></td>
+                                <td><%= inventoryRows[j].Pamount %></td>
+                            </tr>
+                        <% }} %>
+                    </tr>
+                    </tbody>
+             </table>
+
         </div>
     </div>
 </div>  

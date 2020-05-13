@@ -23,6 +23,16 @@ table {
     opacity: 0.5;
   
     }
+    #inventory{
+      margin-top: 28px;
+      margin-bottom: 18px;
+
+    }
+    #Inventory{
+
+     margin-top: 28px;
+
+    }
   .thead-dark{
     background-color:rgb(128, 230, 128);
   }

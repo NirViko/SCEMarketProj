@@ -21,6 +21,13 @@ const config = {
   };
 class salesReports
 {
+  constructor(PID, PName, Pamount)
+    {
+      console.log("constractor");
+        this.PID = PID;
+        this.PName = PName;
+        this.Pamount = Pamount;
+    }
     static getSalesReport(callback){
         console.log("in salesReports class");
         console.log("in getSalesReport func");
@@ -354,5 +361,63 @@ connection.on("connect", err => {
 }); 
 
 }//end of filterbyEmail function
+static getInventory(callback)
+{
+  console.log("in inventory");
+  let connection = new Connection(config);
+connection.on("connect", err => {
+  if (err) {
+    console.error(err.message);
+  } else {
+  const request = new Request( 
+      `SELECT PName, PID, Pamount
+      FROM [dbo].[Product]`,
+    (err, rowCount,inventoryRows) => {
+      if (err) {
+        console.error(err.message);
+        return callback(false);
+      } 
+      else {
+        console.log(`${rowCount} inventoryRows(s) returned`);
+        connection.close();
+        var inventory =[];
+        inventoryRows.forEach(element => {
+          var PID, PName, Pamount;
+          element.forEach(column =>{
+            switch(column.metadata.colName)
+            {
+              
+              case 'PID': 
+              {
+                  PID = column.value;
+                break;
+              }
+              case 'PName': 
+              {
+                PName = column.value;
+                break;
+              }
+              case 'Pamount': 
+              {
+                  Pamount = column.value;
+                break;
+              }
+                 
+            }// end of switch 
+          });
+           console.log( PID, PName, Pamount);
+
+            var salesReport4 = new salesReports(PID, PName, Pamount);
+            inventory.push(salesReport4); 
+        });
+        return callback(inventory);
+      }
+    }
+  );
+  connection.execSql(request);
+}
+}); 
+
+}// inventory table
 }//end of class
 module.exports = salesReports;
