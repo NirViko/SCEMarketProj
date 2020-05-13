@@ -3,37 +3,43 @@ const path = require('path');
 const app = express();
 const router = express.Router();
 const salesReports = require("../salesReports");
+const { Connection, Request } = require("tedious");
+
+
 
 
 router.get('/', function(req,res){
     console.log("in get");
-    salesReports.getSalesReport( function(result){ //במקום 12 צריך להיות פונקציה שלוקחת את הת.ז של בעל הדירה שמחובר!
+    salesReports.getSalesReport( function(result){ 
         res.render('Reports' ,{rows:result});
     });
 });
 
-
-// router.post("/Reports", function(req,res){
-//     console.log("in post");
-//     const unitID =req.body.unitID;
-//     const startDate = req.body.startDate;
-//     const endDate = req.body.endDate;
-//     const location = "'"+req.body.Location+"'"; //default empty
-//     const numberOfRooms = parseFloat(req.body.numberOfRooms); //default empty
-//     const fromPrice = req.body.totalPrice;
-//     const unitTypes = "'"+req.body.Unittype+"'";
-//     const orderNumber = req.body.orderNumber;
-
-// //    console.log("unitid:"+unitID+", startdate:" +startDate+ ",enddate:" +endDate+", location:" +location+ ", numberOfRooms: " +numberOfRooms+", fromPrice:" +fromPrice+", unitTypes:" +unitTypes+", orderNumber: " +orderNumber);
-// salesReports.getFilteredTable( 12, unitID, startDate, endDate, location, numberOfRooms, fromPrice, unitTypes, orderNumber ,function(result){ //במקום 12 צריך להיות פונקציה שלוקחת את הת.ז של בעל הדירה שמחובר!
-//         res.render('Reports',{rows:result});
-//     });
-
-// });
-
-// router.get('/',(req,res)=>{
-//   res.render('Reports');
-// });
-
-
+router.post('/', function(req,res) {
+  console.log(req.body.reportType)  
+if( req.body.reportType == "date")
+{   console.log("in post date");
+    const fromDate = req.body.fromDate;
+    const toDate =  req.body.toDate;
+    salesReports.giveByDate(fromDate, toDate,function(result){ 
+        res.render('Reports' ,{rows:result});
+    });
+}
+else if(req.body.reportType == "email")
+{
+    console.log("in post email");
+        const emailFilter = req.body.emailFilter;
+        salesReports.filterByEmail(emailFilter,function(result){ 
+            res.render('Reports' ,{rows:result});
+        });
+}
+else if(req.body.reportType == "product")
+{
+    console.log("in post product");
+    const filterProduct = req.body.filterProduct;
+    salesReports.filterByProdName(filterProduct,function(result){ 
+        res.render('Reports' ,{rows:result});
+    });
+}
+});
 module.exports = router;

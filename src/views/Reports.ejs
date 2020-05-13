@@ -1,55 +1,43 @@
 <%- include('partials/header') %>
-
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 
 <link  rel="stylesheet" type="text/css" href="/css/Reports.css">
 
-<div> <h1 id="h1">hello!</h1> </div>
 
+<div> <h1 id="h1">Reports page</h1> </div>
 <div class="container">
     <hr> 
     <div class="row">
         <div class="Reports">
-            <!-- <div class = "filters">   
-                <form id="filters" action="/Reports" method="POST">       
-
-                    <label for="cartID">Order number</label>
-                    <input type="text" id="unitID" name="unitID" onkeypress="return isNumberKey(event)" value= " ">
-
-                    <label for="Location">Location</label>
-                    <select id = "Location" name = "Location" placeholder="Choose location">  
-                        <option value=" "></option>
-                        <option value='Ashdod'>Ashdod</option>
-                        <option value='Beer Sheva'>Beer Sheva</option>
-                    </select>
-
-                    <label for="Unittype">Unit type</label>
-                    <select id = "Unittype" name = "Unittype" placeholder="Choose unit type"> 
-                        <option value=" "></option>
-                        <option value='vila'>vila</option>
-                        <option value='loft'>loft</option>
-                        <option value='apartment'>apartment</option>
-                        <option value='basement'>basement</option>
-                    </select>                        
-                 
-                    <label for="numberOfRooms">Number of rooms </label>
-                    <input type="number" id="numberOfRooms" name="numberOfRooms" min="1" max="6" step="0.5" value=1 >
-
-                    <label for="startDate" >Start date</label>
-                    <input type="date" id="startDate" name="startDate" >
-
-                    <label for="endDate">End date</label>
-                    <input type="date" id="endDate" name="endDate"  onchange="checkEndDate()">
-
-                    <label for="totalPrice">From price</label>
-                    <input type="text" id="totalPrice" name="totalPrice" onkeypress="return isNumberKey(event)" value=" ">
+            <div class = "filters">
+                <h2 id = "h2" >Filter by Dates:</h2>
+                <form name="filterDate" class = "filterDate" action='/Reports' method="POST">
+                    <label for="fromDate">From:</label>
+                    <input type="date" id="fromDate" name="fromDate">
+                    <label for="toDate">To:</label>
+                    <input type="date" id="toDate" name="toDate">
+                    <input type="hidden" id="filterDate" name="reportType" value="date">
+                    <button type="submit" class="button">Filter</button>
+                </form>
+                    <!-- <input type="submit" name="filter" id="filterBtn" value="filter" onclick="sortByDate()" class="button" style="margin-bottom: 10px;"></input> -->
                     
-                    <label for="orderNumber">Order number</label>
-                    <input type="text" id="orderNumber" name="orderNumber" onkeypress="return isNumberKey(event)" value=" ">
+                    <h2 id = "h2" >Search by customer email:</h2>
+                    <form name="emailFilter" class = "emailFilter" action='/Reports' method="POST">
+                        <label for="emailFilter">email:</label>
+                        <input type="text" id="emailFilter" name="emailFilter">
+                        <input type="hidden" id="emailFilter" name="reportType" value="email">
+                        <button type="submit" class="button">Search</button>
+                  </form>
 
-                    <button type="submit" class="btn btn-dark" form="filtering">Search</button>
-                </form>        
-            </div> -->
-            <table class="table" id="Reports" >
+                  <h2 id = "h2" >Filter by product name:</h2>
+                  <form name="filterProduct" class = "filterProduct" action='/Reports' method="POST">
+                      <label for="filterProduct">Product name:</label>
+                      <input type="text" id="filterProduct" name="filterProduct">
+                      <input type="hidden" id="filterProduct" name="reportType" value="product">
+                      <button type="submit" class="button">Filter</button>
+                  </form>
+
+            <table class="sortable" id="Reports" >
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">Order number</th>
@@ -60,20 +48,8 @@
                     <th scope="col">Purches date</th>
                     <th scope="col">Costumer name</th>
                     <th scope="col">Costumer email</th>
-
-
-                    <!-- <th class = "none" >Product ID</th>
-                    <th class = "none" >Product name</th>
-                    <th class = "none" >Product amount</th>
-                    <th class = "none" >Total price</th> -->
-
-                    <!-- <th scope="col" onclick="sortDateTable(6)"></th>
-                    <th scope="col" onclick="sortIntTable(7)">Price</th> 
-                    <th scope="col" onclick="sortStringTable(8)">Student full name</th> 
-                    <th scope="col" onclick="sortStringTable(9)">Student email address</th>  -->
                   </tr>
                 </thead>
-               
                 <tbody>
 
                 </tr>
@@ -83,18 +59,46 @@
                             <td><%= rows[i].cartID %></td>
                             <td><%= rows[i].PID %></td>
                             <td><%= rows[i].Pname %></td>
-                            <td><%= rows[i].Pamount %></td>
-                            <td><%= rows[i].totalPrice %></td>
+                            <td id="Pamount" ><%= rows[i].Pamount %></td>
+                            <td id="totalPrice" ><%= rows[i].totalPrice %></td>
                             <td><%= rows[i].cDate.getDate() + '/' + rows[i].cDate.getMonth() + '/' + rows[i].cDate.getFullYear() %></td>
                             <td><%= rows[i].customerName %></td>
                             <td><%= rows[i].customerEmail %></td>
-                        
                         </tr>
+
                     <% }} %>
                 </tbody>
+                <tr>
+                    <td colspan="1"> TOTALS: </td>
+                    <td colspan="2" id="totalIncome"> total income: </td>
+                    <td colspan="5" id="totalProductsSum"> total products sold: </td>
+                </tr>
               </table>
         </div>
     </div>
 </div>  
+<script>
+    var tds = document.getElementById('Reports').getElementsByTagName('td');
+    var totalSum = 0;
+    for (var i = 0; i < tds.length; i++)
+    {
+        if(tds[i].id == 'totalPrice')
+        {
+            totalSum += isNaN(tds[i].innerHTML) ? 0 :parseFloat(tds[i].innerHTML);
+        }
+    }
+    document.getElementById('totalIncome').innerHTML += totalSum+  '₪';
 
+    var tds = document.getElementById('Reports').getElementsByTagName('td');
+    var totalProductsSum = 0;
+    for (var i = 0; i < tds.length; i++)
+    {
+        if(tds[i].id == 'Pamount')
+        {
+            totalProductsSum += isNaN(tds[i].innerHTML) ? 0 :parseFloat(tds[i].innerHTML);
+        }
+    }
+    document.getElementById('totalProductsSum').innerHTML += totalProductsSum;
+
+</script>
 <%- include('partials/footer') %>
