@@ -1,0 +1,131 @@
+<%- include('partials/header') %>
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+
+<link  rel="stylesheet" type="text/css" href="/css/Reports.css">
+
+
+<div> <h1 id="h1">Reports page</h1> </div>
+<div class="container">
+    <hr> 
+    <div class="row">
+        <div class="Reports">
+            <div class = "filters">
+                <h2 id = "h2" >Filter by Dates:</h2>
+                <form name="filterDate" class = "filterDate" action='/Reports' method="POST">
+                    <label for="fromDate">From:</label>
+                    <input type="date" id="fromDate" name="fromDate">
+                    <label for="toDate">To:</label>
+                    <input type="date" id="toDate" name="toDate">
+                    <input type="hidden" id="filterDate" name="reportType" value="date">
+                    <button type="submit" class="button">Filter</button>
+                </form>
+                    <!-- <input type="submit" name="filter" id="filterBtn" value="filter" onclick="sortByDate()" class="button" style="margin-bottom: 10px;"></input> -->
+                    
+                    <h2 id = "h2" >Search by customer email:</h2>
+                    <form name="emailFilter" class = "emailFilter" action='/Reports' method="POST">
+                        <label for="emailFilter">email:</label>
+                        <input type="text" id="emailFilter" name="emailFilter">
+                        <input type="hidden" id="emailFilter" name="reportType" value="email">
+                        <button type="submit" class="button">Search</button>
+                  </form>
+
+                  <h2 id = "h2" >Filter by product name:</h2>
+                  <form name="filterProduct" class = "filterProduct" action='/Reports' method="POST">
+                      <label for="filterProduct">Product name:</label>
+                      <input type="text" id="filterProduct" name="filterProduct">
+                      <input type="hidden" id="filterProduct" name="reportType" value="product">
+                      <button type="submit" class="button">Filter</button>
+                  </form>
+
+            <table class="sortable" id="Reports" >
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Order number</th>
+                    <th scope="col">Product ID</th>
+                    <th scope="col">Product name</th>
+                    <th scope="col">Product amount</th>
+                    <th scope="col">Total price</th> 
+                    <th scope="col">Purches date</th>
+                    <th scope="col">Costumer name</th>
+                    <th scope="col">Costumer email</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                </tr>
+                <% if(typeof rows !== 'undefined'){%>
+                    <%for (var i = 0; i < rows.length; i++) { %>
+                        <tr>
+                            <td><%= rows[i].cartID %></td>
+                            <td><%= rows[i].PID %></td>
+                            <td><%= rows[i].Pname %></td>
+                            <td id="Pamount" ><%= rows[i].Pamount %></td>
+                            <td id="totalPrice" ><%= rows[i].totalPrice %></td>
+                            <td><%= rows[i].cDate.getDate() + '/' + rows[i].cDate.getMonth() + '/' + rows[i].cDate.getFullYear() %></td>
+                            <td><%= rows[i].customerName %></td>
+                            <td><%= rows[i].customerEmail %></td>
+                        </tr>
+
+                    <% }} %>
+                </tbody>
+                <tr>
+                    <td colspan="1"> TOTALS: </td>
+                    <td colspan="2" id="totalIncome"> total income: </td>
+                    <td colspan="5" id="totalProductsSum"> total products sold: </td>
+                </tr>
+              </table>
+
+              <h2 id = "inventory">Store Inventory:</h2>
+
+                    <table class="sortable" id="Inventory" >
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Product name</th>
+                                <th scope="col">Product ID</th>
+                                <th scope="col">Product amount</th>
+                            </tr>
+                        </thead>
+
+
+                    <tbody>
+                    <tr>
+                    <% if(typeof inventoryRows !== 'undefined'){%>
+                        <%for (var j = 0; j < inventoryRows.length; j++) { %>
+                            <tr>
+                                <td><%= inventoryRows[j].PName %></td>
+                                <td><%= inventoryRows[j].PID %></td>
+                                <td><%= inventoryRows[j].Pamount %></td>
+                            </tr>
+                        <% }} %>
+                    </tr>
+                    </tbody>
+             </table>
+
+        </div>
+    </div>
+</div>  
+<script>
+    var tds = document.getElementById('Reports').getElementsByTagName('td');
+    var totalSum = 0;
+    for (var i = 0; i < tds.length; i++)
+    {
+        if(tds[i].id == 'totalPrice')
+        {
+            totalSum += isNaN(tds[i].innerHTML) ? 0 :parseFloat(tds[i].innerHTML);
+        }
+    }
+    document.getElementById('totalIncome').innerHTML += totalSum+  '₪';
+
+    var tds = document.getElementById('Reports').getElementsByTagName('td');
+    var totalProductsSum = 0;
+    for (var i = 0; i < tds.length; i++)
+    {
+        if(tds[i].id == 'Pamount')
+        {
+            totalProductsSum += isNaN(tds[i].innerHTML) ? 0 :parseFloat(tds[i].innerHTML);
+        }
+    }
+    document.getElementById('totalProductsSum').innerHTML += totalProductsSum;
+
+</script>
+<%- include('partials/footer') %>
