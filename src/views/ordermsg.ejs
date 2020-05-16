@@ -1,0 +1,33 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link  rel="stylesheet" type="text/css" href="/css/ordermsg.css">
+
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+  <script src="../routes/ordermsg.js"></script>
+  <% if (locals.paymentSuccess === true ) { %>
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <div class="alert-message alert-message-success">
+                <h4>
+                    The payment was success</h4>
+                <p>
+                  Your order’s on its way!
+                  You can view yours orders in  </strong>. <a href="/myorders">
+                  "My Orders"</a></p>
+            </div>
+  <% } else{ %> 
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <div class="alert-message alert-message-warning">
+                <h4>
+                  The payment failed</h4>
+                <p>
+                    Please try again.</p>
+            </div>
+        </div>
+    </div>
+  <% } %>
+</div>

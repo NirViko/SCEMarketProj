@@ -24,8 +24,7 @@ function request(sqlrequest, callback){
   connection.on('connect', function (err) {
   // If no error, then good to proceed.
   console.log("Connected");
-  // connection.on('debug', function (err) { console.log('debug:', err); });
-
+  
   request = new Request(sqlrequest, (err, rowCount,rows) => {
     if (err) {
       console.error(err.message);

@@ -12,7 +12,5 @@ class salesReport
         this.customerName = customerName;
         this.customerEmail = customerEmail;
     }
-    
-
 }
 module.exports = salesReport;
