@@ -6,7 +6,8 @@ const session = require('express-session');
 
 
 router.get('/',(req,res)=>{
-  res.render('ordermsg',{paymentSuccess:req.session.message.UserCache.paymentSuccess});
+  var localdata = req.session.message.UserCache.paymentSuccess;
+  res.render('ordermsg',{paymentSuccess:localdata});
 });
 
 module.exports = router;

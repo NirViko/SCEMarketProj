@@ -35,14 +35,13 @@ var cart=[];
 
         if (cart.length != 0)
         {
-            for (var i = 0; i < cart.length; i++)
-            {
+            for (var i = 0; i < cart.length; i++) {
+                if(i==cart.length-1 && cart[i].PID != data.PID){
+                    cart.push(data);
+                }
                 if (cart[i].PID == data.PID)
-                    break;
-                 else
                 {
-                cart.push(data);
-                console.log(cart);
+                    break;
                 }
             }
         }

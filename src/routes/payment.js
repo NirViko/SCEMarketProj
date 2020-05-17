@@ -16,12 +16,14 @@ router.get('/',(req,res)=>{
   }
 
   console.log("out  " +req.session.message.Total);
-  res.render('payment',{data:req.session.message});
+  var localdata = req.session.message;
+  res.render('payment',{data:localdata});
 });
 
 router.post('/checkstudentdiscount',(req,res)=>{
   req.session.message.UserCache.openDiscount=true;
-  res.render('payment',{data:req.session.message});
+    var localdata = req.session.message;
+  res.render('payment',{data:localdata});
 });
 
 

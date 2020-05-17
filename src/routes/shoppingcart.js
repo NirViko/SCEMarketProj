@@ -9,15 +9,8 @@ const session = require('express-session');
 
 
 router.get('/',(req,res)=>{
-
-
-
-
-
-    // var fdata= cart.DateModified(cart.Summery(cart.AddQuantity(req.session.message)));
-    req.session.message = cart.DateModified(cart.Summery(cart.AddQuantity(req.session.message)));
-    console.log(req.session.message.UserInfo.type );
-    res.render('shoppingcart',{data:req.session.message});
+    var localdata = req.session.message = cart.DateModified(cart.Summery(cart.AddQuantity(req.session.message)));
+    res.render('shoppingcart',{data:localdata});
 });
 
 router.post('/topayment',(req,res)=>{
@@ -40,7 +33,8 @@ router.get('/:id',(req,res)=>{
         req.session.message = cart.Summery(req.session.message);
 
     }
-    res.render('shoppingcart',{data:req.session.message});
+    var localdata = req.session.message;
+    res.render('shoppingcart',{data:localdata});
 });
 
 module.exports = router;

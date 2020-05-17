@@ -157,10 +157,10 @@
                 <div class="media-body">
                     <h4 id="data" class="media-heading"><a href="#"><%= data[i].PName %></a></h4>
                     <h5 class="media-heading"> by <a href="#"><%= data[i].Pcompany%></a></h5>
-                    <% if(data[i].Pamount < 0){%>
+                    <% if(data[i].Pamount <= 0){%>
                     <span>Status: </span><span class="text-success"><strong>Out of stock</strong></span>
                    <% }%>
-                   <% if(data[i].Pamount >= 0){%>
+                   <% if(data[i].Pamount > 0){%>
                     <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                     <% }%>
                 </div>
