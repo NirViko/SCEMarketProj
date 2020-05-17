@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 var { Connection, Request } = require("tedious");
 
 var config = {
