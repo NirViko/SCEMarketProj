@@ -1,6 +1,5 @@
-const express  = require('express')
+const express  = require('express');
 const bodyParser = require("body-parser");
-const app_port = process.env.PORT || 3000;
 const app = express()
 const session = require('express-session')
 const path = require('path');
@@ -22,7 +21,7 @@ const shoppingcartRoute = require('./src/routes/shoppingcart.js');
 const paymentRoute = require('./src/routes/payment.js');
 const myordersRoute = require('./src/routes/myorders.js');
 const ordermsgRoute = require('./src/routes/ordermsg.js');
-
+const appPort = process.env.PORT || 3000;
 //Middleware - Import routers;
 app.use(bodyParser.urlencoded({extended:true}));
 app.use('/Reports', ReportRoute);
@@ -63,7 +62,7 @@ app.use((err,req,res,next)=>{
 //     res.send('Digital Store SCE');
 // })
 
-const server = app.listen(app_port, () => {
-    const {app_port} = server.address();
-    console.log(`app is running. port: ${app_port}`);
+const server = app.listen(appPort, () => {
+    const {appPort} = server.address();
+    console.log(`app is running. port: ${appPort}`);
 });
