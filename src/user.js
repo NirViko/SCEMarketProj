@@ -35,13 +35,13 @@ function executeStatement1(body) {
      if (err) 
      {  
         console.log(err);}  
-    });  
+    });
     console.log(body.StudentID)
     request.addParameter('fullName', TYPES.VarChar,body.FullName);  
     request.addParameter('email', TYPES.VarChar ,body.email); 
     request.addParameter('userType', TYPES.VarChar,body.userType);  
     request.addParameter('StudentID', TYPES.Int,body.StudentID);  
-    request.addParameter('userPassword',TYPES.Int,body.userPassword);
+    request.addParameter('userPassword',TYPES.Int,body.password);
 
     request.on('row', function(columns) {  
         columns.forEach(function(column) {  
