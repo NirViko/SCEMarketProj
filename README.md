@@ -31,7 +31,7 @@ clone the project to your local enviroment and install the following:
 * npm start
 
 ## Author
-* Anna Rogozin - @AnnaRogojine
-* Dor Hazout - @dorhazout
-* Georgi Djabarov - @djabarovgeorge
-* Nir Vaknin - @NirVaknin
+* Anna Rogozin - [@AnnaRogojine](https://github.com/AnnaRogojine)
+* Dor Hazout - [@dorhazout](https://github.com/dorhazout)
+* Georgi Djabarov - [@djabarovgeorge](https://github.com/djabarovgeorge)
+* Nir Vaknin - [@NirVaknin](https://github.com/NirViko)
