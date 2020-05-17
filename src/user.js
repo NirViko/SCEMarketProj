@@ -29,7 +29,7 @@ connection.on('connect', function(err)
 
 var Request = require('tedious').Request  
 var TYPES = require('tedious').TYPES;  
-
+var userInf = {};
 
 function executeStatement1(body) {  
     request = new Request("INSERT [dbo].[Usernames](fullName, email, userType , studentID,userPassword) OUTPUT INSERTED.email VALUES (@fullName, @email, @userType, @studentID,@userPassword);", function(err) {  
@@ -42,11 +42,11 @@ function executeStatement1(body) {
     request.addParameter('email', TYPES.VarChar ,body.email); 
     request.addParameter('userType', TYPES.VarChar,body.userType);  
     request.addParameter('StudentID', TYPES.Int,body.StudentID);  
-    request.addParameter('userPassword', TYPES.Int,body.password); 
+    request.addParameter('userPassword',TYPES.Int,body.userPassword);
 
     request.on('row', function(columns) {  
         columns.forEach(function(column) {  
-          if (column.value === null) {  
+          if (column.value === null) {
             console.log('NULL');  
           } else {  
             console.log("Product id of inserted item is " + column.value);  
@@ -116,6 +116,11 @@ function executeStatement(body,callback) {
       i++
       if(column.value == body.password)
       {
+          userInf.fullname=arr[1];
+          userInf.email=arr[2];
+          userInf.type=arr[3];
+          userInf.studentID=arr[4];
+          userInf.password=arr[5];
         callback(arr)
       }
       }); 
@@ -129,7 +134,7 @@ function executeStatement(body,callback) {
 
   connection.execSql(request); 
 }  
-
+exports.userInf = userInf;
 module.exports.executeStatement1 = executeStatement1; 
 module.exports.executeStatement = executeStatement;
 module.exports.CheckValidEmail=CheckValidEmail;

@@ -1,0 +1,188 @@
+
+<head>
+    <meta charset="UTF-8">
+    <title> Sce Market </title>
+    <link rel="shortcut icon"  href="/css/images/icon.png">
+    <link  rel="stylesheet" type="text/css" href="/css/desktop.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+    <script srs="../routes/desktop.js"></script>
+
+</head>
+<body>
+
+
+<div class="top-nav-bar" >
+<div class="search-box">
+<img src="/css/images/Logo.png" class="logo" >
+<form class="form-horizontal" action='/desktop/Search' method="POST">
+  <fieldset>
+    <div class="control-group">
+      <div class="controls">
+        <input type="text" id="Company" name="Company" style="width: 500px;" placeholder="Product ID" class="form-control border-secondaryrounded-pill">
+      </div>
+    </div>
+    <div class="control-group">
+      <!-- Button -->
+
+      <div class="controls">
+        <button type="submit" style="background:orange;" style="font-size: xx-large;"class="fa fa-search" style="border: orange;" class="btn btn-primary">Search</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+
+</div>
+<div class="menu-bar">
+    <ul>
+        <li><a href="/desktop/toCart"><i class="fa fa-shopping-basket"></i>Cart</a></li>
+        <%if (user.type=='Admin'){%>
+        <li><a href="/Reports"><i class="fa fa-line-chart"></i>Statistics</a></li>
+        <%}%>
+
+        <li><a href="/Register">Sign up</a></li>
+        <%if(user.type!='Admin'&& user.type!='Student' && user.type!='User'){%>
+        <li><a href="/Login">Log in</a></li>s
+        <%}%>
+
+    </ul>
+</div>  
+</div>
+
+<section class="header"> 
+    <div class="side-menu">
+      <form class="form-horizontal" action='/desktop/range' method="POST">
+        <fieldset>
+          <div class="control-group">
+            <div class="controls">
+              <label  for="price-min">Price MIN:</label>
+              <input type="text" name="MIN" id="MIN" placeholder="0" style="background-color: gray;">
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+              <label  for="price-min">Price MAX:</label>
+              <input type="text" name="MAX" id="MAX" placeholder="0" style="background-color: gray;">
+            </div>
+            </div>
+            <div class="controls">
+          <button type="submit" style="background:orange;" style="font-size: xx-large" style="border-color:orange" class="btn btn-primary">Submit</button>
+           </div> 
+           </fieldset>
+            </form>
+        <ul>
+            <li><i class ="fa fa-angle-right"></i>Categories</i>
+           <ul>
+            <li><a href="/desktop/1">Vegatables and fruits</a></li>
+            <li><a href="/desktop/2">Dairy/Eggs/Salats</a></li>
+            <li><a href="/desktop/3">Meat And Fish</a></li>
+            <li><a href="/desktop/4">Snack</a></li>
+            <li><a href="/desktop/5">Drinks</a></li>
+            <li><a href="/desktop/6">Pastries</a></li>
+           </ul> 
+           </li>  
+        </ul>
+        <ul>
+            <li><i class ="fa fa-angle-right"></i>Filter</i>
+           <ul>
+            <li><a href="/desktop/filter">Price low to high</a></li>
+            <li><a href="/desktop/filter2">Price high to low</a></li>
+            <li><a href="/desktop/filter4">Newer to old</a></li>
+            <li><a href="/desktop/filter3">Old to newer</a></li>
+           </ul> 
+           </li>  
+        </ul>
+        <%if (user.type=='Admin'){%>
+        <ul>
+            <li><i class ="fa fa-angle-right"></i>Admin</i>
+                <ul>
+                    <li><a href="/RemoveP">Delete Product</a></li>
+                    <li><a href="/AddProduct">Add Product</a></li>
+                </ul>
+            </li>
+        </ul>
+        <%}%>
+
+    </div>
+    <div class="slider">
+        <div id="slider" class="carousel slide carousel-fade pointer-event" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item">
+            <img src="/css/images/first.png" class="d-block w-100">
+          </div>
+          <div class="carousel-item">
+            <img src="/css/images/second.jpg" class="d-block w-100">
+          </div>
+          <div class="carousel-item active">
+            <img src="/css/images/third.jpg" class="d-block w-100">
+          </div>
+            <div class="carousel-item">
+            <img src="/css/images/forth.jpg" class="d-block w-100">
+          </div>
+        </div>
+        <ol class="carousel-indicators">
+          <li data-target="#slider" data-slide-to="0" class=""></li>
+          <li data-target="#slider" data-slide-to="1" class=""></li>
+          <li data-target="#slider" data-slide-to="2" class="active"></li>
+          <li data-target="#slider" data-slide-to="3"></li>
+        </ol>
+      </div>  
+      </div>    
+
+      </section>
+      <section class="on-sale">
+        <div class="container">
+        <div class="title-box">
+      <div><a href="/desktop" style="color: black;">Products</a></div>
+        </div>
+        </div>
+      </section>
+      <% if(data.length == 0){%>
+        <span class="text-success"><strong style="color: red;">NO SUCH A PRODUCT EXIST</strong></span>
+        <% }%>
+        
+        <%for (var i = 0; i < data.length; i++) { %>
+          <tr>
+            <td class="col-sm-8 col-md-6">
+            <div class="media">
+                <a class="thumbnail pull-left" href="#"><img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                <div class="media-body">
+                    <h4 id="data" class="media-heading"><a href="#"><%= data[i].PName %></a></h4>
+                    <h5 class="media-heading"> by <a href="#"><%= data[i].Pcompany%></a></h5>
+                    <% if(data[i].Pamount < 0){%>
+                    <span>Status: </span><span class="text-success"><strong>Out of stock</strong></span>
+                   <% }%>
+                   <% if(data[i].Pamount >= 0){%>
+                    <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                    <% }%>
+                </div>
+            </div></td>
+            <td class="col-sm-1 col-md-1 text-center"><strong><%= data[i].Pprice %>NIS</strong></td>
+            <td class="col-sm-1 col-md-1">
+           <div class="controls">
+               <%if(user.type=='Admin'||user.type=='Student' || user.type=='User'){%>
+            <form class="form-horizontal" action="/desktop/cart/<%=data[i].PID%>" method="get">
+            <button type="submit" style="background:orange;" class="glyphicon glyphicon-shopping-cart" style="border: orange;" class="btn btn-primary">
+                Add to cart</button>
+            </form>
+               <%}%>
+               <%if(user.type!='Admin'&& user.type!='Student' && user.type!='User'){%>
+               <form class="form-horizontal" action="/Login">
+                   <button type="submit" style="background:orange;" class="glyphicon glyphicon-shopping-cart" style="border: orange;" class="btn btn-primary">
+                       Add to Cart</button>
+               </form>
+               <%}%>
+           </div>
+        </tr>
+        <% } %>
+
+      </body>
+      

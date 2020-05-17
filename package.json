@@ -5,8 +5,8 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint src/*.js --color",
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,8 +14,10 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
+    "bcrypt": "^4.0.1",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
+    "express-session": "^1.17.1",
     "jest": "^25.3.0",
     "nodemon": "^2.0.3"
   },
@@ -23,6 +25,7 @@
     "body-parser": "^1.19.0",
     "ejs": "^3.1.2",
     "express": "^4.17.1",
+    "express-validator": "^6.4.1",
     "tedious": "^8.3.0"
   },
   "description": ""
