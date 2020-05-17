@@ -1,0 +1,138 @@
+<!DOCTYPE html> 
+<html>
+<link  rel="stylesheet" type="text/css" href="/css/desktop.css">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <link rel="shrtcut icon" type="image/png" href="./css/images/icon.png">
+<script >
+function validate() 
+{
+
+   var FullName=document.getElementById('FullName').value
+   var email=document.getElementById('email').value
+   var StudentID=document.getElementById('StudentID').value
+   var password=document.getElementById('password').value
+   var password_confirm=document.getElementById('password_confirm').value
+
+   if(!/[a-zA-Z]/.test(FullName))
+   {
+    alert('Insert incorrect characters/None')
+    return false
+   }
+   if(FullName.length > 40)
+   {
+    alert('You have entered too many characters to the full name')
+    return false
+   }
+   if(FullName.length == 0)
+   {
+    alert('Please enter characters in full name')
+    return false
+   }
+   if(!/\S+@\S+\.\S+/.test(email))
+   {
+    alert('The email entered is incorrect')
+    return false
+   }
+   if(!/[0-9]/.test(StudentID))
+   {
+    alert('Please enter numbers only to studnetID')
+   }
+   if(!/[a-zA-Z0-9]/.test(password))
+   {
+    alert('The password incorrect')
+    return false
+   }
+   if(password.length < 6)
+   {
+    alert('The password should be more than 6 characters')
+    return false
+   }
+   if(password.length > 16 )
+   {
+    alert('Password is greater than 16 characters')
+    return false
+   }
+   if(password!==password_confirm)
+   {
+    alert('The passwords do not match')
+    return false
+   }
+
+}
+
+
+
+</script>
+
+<!------ Include the above in your HEAD tag ---------->
+</head>
+
+<body>
+<div class="top-nav-bar" >
+  <div class="search-box">
+    <img src="/css/images/Logo.png" class="logo" >
+  </div>
+</div>
+
+<form class="form-horizontal" action='' method="POST" onsubmit = "return(validate());">
+  <fieldset>
+    <div id="legend">
+      <legend class="">Register</legend>
+    </div>
+    <div class="control-group">
+      <!-- Full Name -->
+      <label class="control-label"  for="Full Name">FullName</label>
+      <div class="controls">
+        <input type="text" id="FullName" name="FullName" placeholder="" class="input-xlarge">
+        <p class="help-block">Full Name can contain any letters or numbers, without spaces</p>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- E-mail -->
+      <label class="control-label" for="email">E-mail</label>
+      <div class="controls">
+        <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+        <p class="help-block">Please provide your E-mail</p>
+      </div>
+    </div>
+
+
+        <div class="control-group">
+      <!-- Student-ID -->
+      <label class="control-label" for="Student-ID">E-Student-ID</label>
+      <div class="controls">
+        <input type="text" id="StudentID" name="StudentID" placeholder="" class="input-xlarge">
+        <p class="help-block">Please provide your Student-ID (If you don't , Please put zero in the area)</p>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Password-->
+      <label class="control-label"  for="password">Password</label>
+      <div class="controls">
+        <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+        <p class="help-block">Password should be at least 6 characters (numeric only)</p>
+      </div>
+    </div>
+ 
+    <div class="control-group" >
+      <!-- Password -->
+      <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+      <div class="controls">
+        <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+        <p class="help-block">Please confirm password</p>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button  class="btn btn-success"  >Register</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+</body>
+</html>

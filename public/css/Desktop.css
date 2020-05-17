@@ -1,0 +1,378 @@
+*
+{
+    margin: 0;
+    padding: 0; 
+}
+body
+{
+    font-family: sans-serif;
+}
+.top-nav-bar
+{
+   height: 57px;
+    top: 0;
+    position: sticky;
+    background: #fff;
+    margin-bottom: 20px;
+    border-bottom: 3px solid orange;
+    z-index: 2;
+}
+.logo
+{
+    height: 40px;
+    margin: 5px 10px;
+}
+.form-control
+{
+    margin-top: 9px;
+    margin-left: 30px;
+    border: 1px solid orange !important;
+    border-top-left-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    box-shadow: none !important;
+    
+}
+
+.search-box
+{
+    display: inline-flex;
+    width: 60%;
+}
+.fa-search
+{
+    color: #fff;
+    background-color: orange;
+    font-size: xx-large;
+    border: orange;
+}
+
+
+.menu-bar
+{
+    width: 40%;
+    height: 57px;
+    float: right;
+    
+}
+.menu-bar ul{
+    display: inline-flex;
+    float:right;
+
+}
+.menu-bar ul li{
+    border-left:1px solig #fff;
+    list-style-type:none;
+    padding: 15px 35px;
+    text-align: center;
+    background-color: orange;
+    cursor: pointer;
+
+}
+.menu-bar ul li a 
+{
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu-bar2
+{
+    width: 40%;
+    height: 57px;
+    float: right;
+
+}
+.menu-bar2 ul{
+    display: inline-flex;
+    float:right;
+
+}
+.menu-bar2 ul li{
+    border-left:1px solid white;
+    list-style-type:none;
+    padding:0px 20px;
+    text-align: center;
+    background-color: orange;
+    cursor: pointer;
+
+}
+.menu-bar2 ul li a
+{
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+
+
+
+.fa-shopping-basket{
+    margin-right: 3px;
+
+}
+
+.fa-line-chart{
+    margin-left: 3px;
+
+}
+@media only screen and (max-width: 980px)
+{
+    .top-nav-bar
+    {
+        height: 118px;
+        border-bottom: 0;
+    }
+    .search-box
+    {
+        width: 100%;
+    }
+    .menu-bar
+    {
+        width: 100%;
+    }
+    .menu-bar ul
+    {
+        margin: 10px 0;
+        width: 100%;
+    }
+    .menu-bar ul li
+    {
+        height: 57px;
+        width: 100%;
+    } 
+}
+
+
+
+
+
+/*----------------Side-menu--------------*/
+.side-menu
+{
+    height: 67%;
+    width: 15%;
+    font-size: 14px;
+    float: left;
+    z-index: 2;
+    background-color:peachpuff;
+}
+.side-menu ul
+{
+    margin-left: 10px;
+}
+.side-menu ul li
+{
+    list-style-type: none;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.side-menu ul li:hover
+{
+    color: orange;
+}
+.side-menu ul li ul
+{
+    display: none;
+    z-index: 10;
+    top: 77px;
+}
+.side-menu ul li:hover ul
+{
+    display: block;
+    height: 400px;
+    margin-left: 14%;
+    padding: 0 100px 10px 10px;
+    position: fixed;
+    background: peachpuff;
+    box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.5);
+}
+.fa-angle-right
+{
+    margin-top: 4px;
+    margin-right: 8px;
+    float: right;
+}
+#menu-btn, #close-btn
+{
+    font-size: 30px;
+    margin: 10px;
+    color: orange;
+    display: none;
+}
+
+@media only screen and (max-width: 980px)
+{
+    .side-menu
+    {
+        width: 34%;
+        z-index: 20;
+        top: 133px;
+        position: fixed;
+        font-size: 12px;  
+        display: none;
+        background: #f1f3f4;
+    }
+    .side-menu ul li ul
+    {
+        top: 133px;
+    }
+    .side-menu ul li:hover ul
+    {
+        margin-left: 31%;
+    }
+    #menu-btn
+    {
+        display: block;
+    }
+}
+/*-----------------slider CSS-------------------*/
+
+.slider
+{
+    width: 750px;
+    height: 400px;
+    margin-left: 15%;
+    padding: 0 10px;
+    
+}
+.carousel
+{
+    box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.5);
+}
+.carousel-indicators
+{
+    z-index: 1 !important;
+}
+@media only screen and (max-width: 980px)
+{
+    .slider
+    {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+.section{
+    width: 900px;
+    margin-left: 15%;
+    padding: 0 10px;
+    
+}
+
+
+/*---------------On Sale product CSS----------------*/
+
+.title-box
+{
+    background: orange;
+    color: #fff;
+    width: 180px;
+    padding: 4px 10px;
+    height: 60px;
+    margin-bottom: 30px;
+    display: flex;
+    cursor: pointer;
+}
+.title-box button
+{
+    font-size: 24px;
+    background: orange;
+    padding:0;
+    border:none;
+}
+.add{
+
+    margin: 0 40% 40%;
+    background-color: peachpuff;
+
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
+table {
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid orange;
+    text-align: left;
+    padding: 8px;
+}
+thead:hover td{
+    background-color: orange;
+    opacity: 0.5;
+    color: black;
+}
+tr:hover {
+    background-color:orange;
+    opacity: 0.5;
+
+}
+#inventory{
+    margin-top: 28px;
+    margin-bottom: 18px;
+
+}
+#Inventory{
+
+    margin-top: 28px;
+
+}
+.thead-dark{
+    background-color:rgb(128, 230, 128);
+}
+
+.thead-dark th{
+    color: #000000;
+}
+tr:nth-child(even) {
+    background-color: rgb(171, 233, 171);
+}
+h1{
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;;
+    background-color: orange;
+}
+
+
+
+
+h2 {
+    position: relative;
+    font-size: large;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
+}
+form{
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; ;
+}
+.button{
+    padding: 3px 17px;
+    font-size: 16px;
+    background-color: peachpuff;
+    border-radius: 8px;
+    opacity: 1;
+}
+.button:hover{
+    padding: 3px 17px;
+    font-size: 16px;
+    background-color:peachpuff;
+    border-radius: 8px;
+    opacity: 0.8;}

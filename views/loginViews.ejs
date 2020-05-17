@@ -1,0 +1,90 @@
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="shrtcut icon" type="image/png" href="/css/images/icon.png">
+<link  rel="stylesheet" type="text/css" href="/css/desktop.css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="src/routes/loginRout.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+<script>
+function validate() 
+{
+
+   var email=document.getElementById('email').value
+
+   if(!/\S+@\S+\.\S+/.test(email))
+   {
+    alert('The email entered is incorrect')
+    return false
+   }
+   
+
+}
+
+
+</script>
+<div class="top-nav-bar" >
+  <div class="search-box">
+    <img src="/css/images/Logo.png" class="logo" >
+  </div>
+</div>
+
+<form class="form-horizontal" action='' method="POST" onsubmit = "return(validate());">
+  <fieldset>
+    <div id="legend">
+      <legend class="">Log-in</legend>
+    </div>
+    <div class="control-group">
+      <%if(err==0){%>
+    <div class="control-group">
+      <!-- E-mail -->
+      <label class="control-label" for="email">E-mail</label>
+      <div class="controls">
+        <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+        <p class="help-block">Please enter your E-Mail </p>
+
+
+      </div>
+    </div>
+    <div class="control-group">
+      <!-- Password-->
+      <label class="control-label" for="password">Password</label>
+      <div class="controls">
+        <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+        <p class="help-block">Please enter your password</p>
+      </div>
+    </div>
+      <%}%>
+        <%if(err!=0){%>
+          <div class="control-group">
+            <!-- E-mail -->
+            <label class="control-label" for="email"> Enter your E-mail again </label>
+            <div class="controls">
+              <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+              <p class="help-block">Please enter your E-Mail </p>
+
+
+            </div>
+          </div>
+          <div class="control-group">
+            <!-- Password-->
+            <label class="control-label" for="password">Enter your Password again</label>
+            <div class="controls">
+              <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+              <p class="help-block">Please enter your password</p>
+            </div>
+          </div>
+        <%}%>
+
+
+ 
+ 
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-success">Log-in</button>
+      </div>
+    </div>
+    </div>
+  </fieldset>
+</form>
