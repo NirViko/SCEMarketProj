@@ -2,6 +2,7 @@
 
 ![logo](./etc/logo.jpeg)
 
+## General Info
 SCEMarket is an online supermarket store written in JavaScript.
 
 In our store students get a special discount!
