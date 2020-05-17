@@ -63,6 +63,7 @@ app.use((err,req,res,next)=>{
 //     res.send('Digital Store SCE');
 // })
 
-app.listen(app_port, () => {
+const server = app.listen(app_port, () => {
+    const {app_port} = server.address();
     console.log(`app is running. port: ${app_port}`);
 });
