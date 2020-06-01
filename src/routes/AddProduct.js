@@ -15,7 +15,7 @@ router.get('/',(req,res)=>{
 
 
 
-router.post('/', (req, res) => {
+router.post('/addP', (req, res) => {
     // prepare an object containing all user inputs.
     console.log("Post");
     let userInput = {
@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
              Pamount: req.body.Pamount,
             
     };
-    // call create function. to create a new user. if there is no error this function will return it's id.
+
     AddP.executeStatement1(userInput);
 });
 

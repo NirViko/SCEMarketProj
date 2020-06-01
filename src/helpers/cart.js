@@ -1,9 +1,10 @@
-
+const Remove=require('../Remove');
 function DateModified(data){
   return {
     Products : data.Products,
     Total : data.Total,
     UserInfo : data.UserInfo ? data.UserInfo : null,
+    Like:data.Like,
     UserCache : {
       fullPrice : data.UserCache.fullPrice ? data.UserCache.fullPrice : null,
       openDiscount : false,
@@ -18,7 +19,8 @@ function AddQuantity(data) {
     })
   return {
     Products : products,
-    user : data.user
+    user : data.user,
+    Like:data.Like,
   };
 
 }
@@ -34,14 +36,18 @@ function Summery(data){
     Products : products,
     Total : total,
     UserInfo : data.user,
+    Like:data.Like,
     UserCache : {fullPrice : total }
   };
 }
 function RemoveProduct(data, id) {
+  console.log("REMOVVVE");
+  console.log(id);
+  Remove.removeProduct(id);
   data.Products.splice(data.Products.map(obj => obj.PID).findIndex(oid => oid == id), 1)
   return Summery(data);
-
-
 }
+
+
 module.exports = { Summery, RemoveProduct, DateModified, AddQuantity};
 

@@ -5,7 +5,6 @@
 <script src="../helpers.js"></script>
 
 
-
 <div class="container">
 
     <script src="../routes/shoppingcart.js"></script>
@@ -42,8 +41,8 @@
                         <td class="col-sm-1 col-md-1 text-center"><strong>$<%= data.Products[i].Pprice %></strong></td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>$<%= data.Products[i].Total %></strong></td>
                         <td class="col-sm-1 col-md-1">
-                            <form action="/shoppingcart/removeprod/" method = "post">
-                                <button  class="btn btn-link" type="hidden" name="removeid">Remove</button>
+                            <form action="/shoppingcart/removeprod/<%= data.Products[i].PID %>" method = "post">
+                                <button  class="btn btn-link" type="hidden" id="removeid" name="removeid">Remove</button>
                             </form>
                 </tr>
                 </tbody>
@@ -60,12 +59,12 @@
                     <td>   </td>
                     <td>
                         <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart" ></span><a href="/desktop"> Continue Shopping
+                            <span class="glyphicon glyphicon-shopping-cartSpec" ></span><a href="/desktop"> Continue Shopping
                             </a></button></td>
                     <td>
-                        <form action="/shoppingcart/topayment" method = "post">
-                            <button  class="btn btn-link">Checkout !</button>
-                        </form>
+
+                        <button  class="btn btn-link"><a href="/payment">Checkout !</a></button>
+
                 </tr>
                 <% } else{ %>
                     <td>  
@@ -81,3 +80,90 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+<section class="recommended">
+    <div class="">
+        <div class="title-box">
+            <div><a style="font-family: sans; font-size: large; color: orange; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Best- Selling</a></div>
+        </div>
+    </div>
+
+
+<%for (var i = 0; i < best.length; i++) { %>
+    <% if(best[i].Pamount > 0){%>
+    <tr>
+        <td class="col-sm-8 col-md-6">
+            <div class="media">
+                <a class="thumbnail pull-left" href="#"><img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                <div class="media-body">
+                    <h4 id="data" class="media-heading"><a href="#"><%= best[i].PName %></a></h4>
+                    <h5 class="media-heading"> by <a href="#"><%= best[i].Pcompany%></a></h5>
+
+
+                </div>
+            </div></td>
+        <td class="col-sm-1 col-md-1 text-center"><strong><%= best[i].Pprice %>NIS</strong></td>
+        <td class="col-sm-1 col-md-1">
+            <div class="controls">
+                <form action="/desktop/addtocart/<%=best[i].PID %>" method = "post">
+                    <button type="submit" style="background:orange;" class="glyphicon glyphicon-shopping-cart" style="border: orange;" class="btn btn-primary">
+                                               Add to cart</button>
+                </form>
+                        <!--                <form class="form-horizontal" action="" method="get">-->
+<!--                    <button type="submit" style="background:orange;" class="glyphicon glyphicon-shopping-cartSpec" style="border: orange;" class="btn btn-primary">-->
+<!--                        Add to cartSpec</button>-->
+<!--                </form>-->
+
+            </div>
+    </tr>
+<%}%>
+<% } %>
+</section>
+
+<section class="MayLike">
+    <div class="">
+        <script src="../routes/shoppingcart.js"></script>
+        <div class="title-box">
+            <div><a style="font-family: sans; font-size: large; color: orange; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">You May Like</a></div>
+        </div>
+    </div>
+
+
+    <% if(data.Like.length!= 0){%>
+    <% var leng= data.Like.length%>
+    <%if(leng >3){%>
+    <% leng=3%>
+        <%}%>
+
+    <%for (var i = 0; i < leng ; i++) { %>
+        <% if(data.Like[i].Pamount > 0){%>
+            <tr>
+                <td class="col-sm-8 col-md-6">
+                    <div class="media">
+                        <a class="thumbnail pull-left" href="#"><img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                        <div class="media-body">
+                            <h4 id="data" class="media-heading"><a href="#"><%= data.Like[i].PName %></a></h4>
+                            <h5 class="media-heading"> by <a href="#"><%= data.Like[i].Pcompany%></a></h5>
+
+
+                        </div>
+                    </div></td>
+                <td class="col-sm-1 col-md-1 text-center"><strong><%= data.Like[i].Pprice %>NIS</strong></td>
+                <td class="col-sm-1 col-md-1">
+                    <div class="controls">
+                        <form action="/desktop/addtocart/<%=data.Like[i].PID %>" method = "post">
+                            <button type="submit" style="background:orange;" class="glyphicon glyphicon-shopping-cart" style="border: orange;" class="btn btn-primary">
+                                Add to cart</button>
+                        </form>
+
+                    </div>
+            </tr>
+        <%}%>
+    <% } %>
+    <%}%>
+</section>
