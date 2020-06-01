@@ -110,11 +110,24 @@ const user = require('../user');
     });
   });
 
+router.post('/addtocart/:id',(req,res)=>{
+  console.log(req.params.id)// call create function. to create a new user. if there is no error this function will return it's id.
+  db.request("SELECT * from Product where PID =" + req.params.id,(select) => {
+    if(select.length != 0){
+      Remove.cartArr(select[0]);
+      res.redirect("/desktop/toCart");
+    }
+  });
+});
+
+
   router.get('/toCart',(req,res) => {
-    req.session.message = {Products:(Remove.sendToCart()),user:user.userInf};
-    console.log(Remove.sendToCart());
-    res.redirect("/shoppingcart");
-  })
+    db.request("SELECT * from Product ",(select) => {
+      req.session.message = {Products:(Remove.sendToCart()),user:user.userInf,Like:Remove.Maylike(select)};
+      Remove.Maylike(select);
+      res.redirect("/shoppingcart");
+      });
+    });
 module.exports = router;
 
 

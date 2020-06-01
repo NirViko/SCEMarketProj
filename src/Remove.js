@@ -29,6 +29,19 @@ connection.on('connect', function(err)
 var Request = require('tedious').Request  
 var TYPES = require('tedious').TYPES;  
 var cart=[];
+
+    function removeProduct(p) {
+        console.log(p);
+
+        for(var i=0;i<cart.length;i++){
+            console.log("forr");
+            if(cart[i].PID==p){
+                console.log("if");
+                cart.pop();
+            }
+        }
+
+    }
     function cartArr(data) {
         if (data.Pamount == 0)
             return;
@@ -44,13 +57,25 @@ var cart=[];
                     break;
                 }
             }
-        }
+            }
         else
         {
             cart.push(data);
         }
-
 }
+ function MayLike(data) {
+     var cart2=[];
+
+        for(var i=0;i<cart.length;i++){
+            for (var j=0;j<data.length;j++){
+                if(data[j].Pcategory==cart[i].Pcategory && data[j].PName!=cart[i].PName && data[j].Pamount>0){
+                    cart2.push(data[j]);
+                    break;
+                }
+            }
+        }
+    return cart2;
+ }
 
     function deleteData(PID) { 
         console.log("start delete") ;
@@ -76,6 +101,9 @@ function sendToCart(){
         return cart;
 }
 
+
+module.exports.Maylike=MayLike;
+module.exports.removeProduct=removeProduct;
 module.exports.sendToCart=sendToCart;
 module.exports.cartArr=cartArr;
 module.exports.deleteData=deleteData;
